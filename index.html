@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин «Светлячок»</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка с бургером -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Светлячок</a>
+            
+            <!-- Кнопка гамбургер для мобилок -->
+            <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Навигация / Бургер-меню -->
+            <nav class="nav" id="navMenu">
+                <!-- Выпадающий пункт: Взрослое -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle">Взрослое</button>
+                    <div class="dropdown-menu">
+                        <a href="adult-top.html">Верх</a>
+                        <a href="adult-bottom.html">Низ</a>
+                        <a href="adult-shoes.html">Обувь</a>
+                    </div>
+                </div>
+
+                <!-- Выпадающий пункт: Детское -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle">Детское</button>
+                    <div class="dropdown-menu">
+                        <a href="kids-top.html">Верх</a>
+                        <a href="kids-bottom.html">Низ</a>
+                        <a href="kids-shoes.html">Обувь</a>
+                    </div>
+                </div>
+
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный экран (О нас + Ссылка на группу) -->
+    <main class="main">
+        <section class="hero-welcome">
+            <div class="container">
+                <h2>Светлячок</h2>
+                <p class="about-text">Холодные оттенки, строгий стиль и свет. Мы создаем одежду с характером.</p>
+                
+                <div class="social-link-box">
+                    <a href="ССЫЛКА_НА_ТВОЮ_ГРУППУ" target="_blank" class="btn group-btn">Наша группа ВКонтакте / Telegram</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacts" class="contacts-section">
+            <div class="container">
+                <h3>Контакты и адрес</h3>
+                <p><strong>Адрес:</strong> Укажи здесь город, улица, дом</p>
+                <p><strong>Режим работы:</strong> Пн-Вс: 10:00 – 20:00</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Светлячок.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
