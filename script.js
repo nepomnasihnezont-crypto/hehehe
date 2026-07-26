@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- ГЕНЕРАЦИЯ ЗВЕЗД ЧЕРЕЗ JS ---
-    const starsCount = 45; // Количество звёзд на фоне
+ 
+    const starsCount = 45; 
     for (let i = 0; i < starsCount; i++) {
         const star = document.createElement('div');
         star.classList.add('star');
         
-        // Случайные координаты, размер и время анимации
         const size = Math.random() * 3 + 1.5; // от 1.5px до 4.5px
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(star);
     }
 
-    // --- МОБИЛЬНОЕ МЕНЮ И БУРГЕР ---
     const burgerBtn = document.getElementById('burgerBtn');
     const navMenu = document.getElementById('navMenu');
     const dropdowns = document.querySelectorAll('.dropdown');
