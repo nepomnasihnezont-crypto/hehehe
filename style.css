@@ -1,4 +1,4 @@
-/* Базовые сбросы */
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    /* Сделали синий чуть ярче и сочнее */
+
     background: linear-gradient(135deg, #222548 0%, #302652 40%, #53335c 70%, #ff7b72 100%);
     background-attachment: fixed;
     color: #f2e6ff;
@@ -17,7 +17,6 @@ body {
     min-height: 100vh;
 }
 
-/* Закатные светлячки-звёздочки */
 .star {
     position: fixed;
     background-color: #ffe6a7;
@@ -39,7 +38,6 @@ body {
     padding: 0 20px;
 }
 
-/* Шапка сайта — аккуратная плотная плашка с закатной подсветкой */
 .header {
     background: rgba(34, 30, 58, 0.85);
     backdrop-filter: blur(12px);
@@ -70,7 +68,6 @@ body {
     color: #ffb8a5;
 }
 
-/* Навигация (десктоп) */
 .nav {
     display: flex;
     gap: 30px;
@@ -89,7 +86,6 @@ body {
     text-shadow: 0 0 10px rgba(255, 158, 128, 0.5);
 }
 
-/* Выпадающие меню */
 .dropdown {
     position: relative;
 }
@@ -143,7 +139,6 @@ body {
     display: flex;
 }
 
-/* Заметная кнопка бургер */
 .burger-btn {
     display: none;
     background: #ff7b72;
@@ -174,7 +169,6 @@ body {
     box-shadow: 0 0 20px rgba(255, 158, 128, 0.8);
 }
 
-/* Анимация крестика для бургера при открытии */
 .burger-btn.active span:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
 }
@@ -187,7 +181,6 @@ body {
     transform: translateY(-9px) rotate(-45deg);
 }
 
-/* Главный блок приветствия */
 .hero-welcome {
     padding: 80px 0;
     text-align: center;
@@ -230,7 +223,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Контакты */
 .contacts-section {
     padding: 40px 0 80px;
     text-align: center;
@@ -248,7 +240,6 @@ body {
     margin-bottom: 8px;
 }
 
-/* Подвал */
 .footer {
     background-color: #191b33;
     border-top: 1px solid rgba(255, 158, 128, 0.2);
@@ -258,7 +249,6 @@ body {
     font-size: 14px;
 }
 
-/* Адаптив для телефонов */
 @media (max-width: 768px) {
     .burger-btn {
         display: flex;
