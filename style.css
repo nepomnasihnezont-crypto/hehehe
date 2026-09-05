@@ -5,6 +5,8 @@
     --text-muted: #6b7280;
     --accent: #2563eb;
     --accent-hover: #1d4ed8;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
     --border: #e5e7eb;
     --radius: 12px;
 }
@@ -18,7 +20,7 @@ body {
 }
 
 .wrapper {
-    max-width: 1000px;
+    max-width: 1050px;
     margin: 0 auto;
 }
 
@@ -43,7 +45,6 @@ header p {
     gap: 16px;
 }
 
-/* Адаптив для планшетов и телефонов */
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -70,7 +71,6 @@ header p {
     border-bottom: 1px solid var(--border);
 }
 
-/* Автолавки */
 .van-box {
     background: #f9fafb;
     border: 1px solid var(--border);
@@ -78,25 +78,34 @@ header p {
     padding: 10px;
     margin-bottom: 10px;
 }
+
 .van-header {
     display: flex;
     justify-content: space-between;
     font-weight: 600;
     font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.van-route {
+    font-size: 12px;
+    color: var(--text-muted);
     margin-bottom: 6px;
 }
+
 .progress-container {
     background: var(--border);
     border-radius: 4px;
     height: 6px;
     overflow: hidden;
+    margin-bottom: 8px;
 }
+
 .progress-bar {
     background: var(--accent);
     height: 100%;
 }
 
-/* Советы */
 .tip-item {
     font-size: 13px;
     padding: 10px;
@@ -107,55 +116,86 @@ header p {
     line-height: 1.4;
 }
 
-/* Таблица */
+.driver-panel {
+    background: #fdfbf7;
+    border-color: #fcd34d;
+}
+
+.check-item {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
 .table-wrapper {
     overflow-x: auto;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
-    min-width: 300px;
+    min-width: 320px;
 }
+
 th, td {
     text-align: left;
-    padding: 8px;
+    padding: 8px 6px;
     border-bottom: 1px solid var(--border);
 }
+
 th {
     color: var(--text-muted);
     font-weight: 500;
 }
 
-/* Форма */
 .field {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
+
 .field label {
     display: block;
     font-size: 12px;
     color: var(--text-muted);
     margin-bottom: 4px;
 }
+
 .field input {
     width: 100%;
-    padding: 10px;
+    padding: 9px;
     border: 1px solid var(--border);
     border-radius: 6px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 13px;
 }
+
 button {
     background: var(--accent);
     color: white;
     border: none;
-    padding: 12px;
+    padding: 10px 14px;
     border-radius: 6px;
-    width: 100%;
     font-weight: 500;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
+    width: 100%;
 }
+
 button:hover {
     background: var(--accent-hover);
+}
+
+.btn-danger {
+    background: var(--danger);
+}
+.btn-danger:hover {
+    background: var(--danger-hover);
+}
+
+.btn-sm {
+    padding: 3px 6px;
+    font-size: 11px;
+    width: auto;
+    margin-right: 2px;
 }
