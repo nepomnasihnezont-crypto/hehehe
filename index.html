@@ -3,76 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин «Светлячок»</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Мобильная торговая сеть — Прототип</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        header h1 {
+            margin: 0 0 4px 0;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        header p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 18px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        /* Автолавки */
+        .van-item {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .van-title {
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+        .progress-bar {
+            background: var(--border);
+            border-radius: 4px;
+            height: 8px;
+            width: 100%;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: var(--primary);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        /* ИИ-рекомендации */
+        .ai-tip {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 10px 14px;
+            font-size: 14px;
+            margin-bottom: 8px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Таблица каталога */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+        }
+
+        /* Форма */
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+        }
+        button:hover {
+            background: var(--primary-dark);
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container header-container">
-            <a href="index.html" class="logo">Светлячок</a>
-            
-            <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
 
-            <!-- Навигация / Бургер-меню -->
-            <nav class="nav" id="navMenu">
-                <!-- Выпадающий пункт: Взрослое -->
-                <div class="dropdown">
-                    <button class="dropdown-toggle">Взрослое</button>
-                    <div class="dropdown-menu">
-                        <a href="adult-top.html">Верх</a>
-                        <a href="adult-bottom.html">Низ</a>
-                        <a href="adult-shoes.html">Обувь</a>
-                    </div>
-                </div>
-
-                <!-- Выпадающий пункт: Детское -->
-                <div class="dropdown">
-                    <button class="dropdown-toggle">Детское</button>
-                    <div class="dropdown-menu">
-                        <a href="kids-top.html">Верх</a>
-                        <a href="kids-bottom.html">Низ</a>
-                        <a href="kids-shoes.html">Обувь</a>
-                    </div>
-                </div>
-
-                <a href="#contacts">Контакты</a>
-            </nav>
-        </div>
+<div class="container">
+    <header>
+        <h1>Мобильная торговая сеть (Прототип)</h1>
+        <p>Панель управления автолавками, логистикой и товарными остатками</p>
     </header>
 
-    <!-- Главный экран (О нас + Ссылка на Макс) -->
-    <main class="main">
-        <section class="hero-welcome">
-            <div class="container">
-                <h2>Светлячок</h2>
-                <p class="about-text"> о нас тут что то</p>
+    <div class="grid">
+        <!-- Левая колонка: Автолавки и Маршруты -->
+        <div>
+            <div class="card">
+                <h2>🚛 Активные автолавки</h2>
                 
-                <div class="social-link-box">
-                    <a href="https://max.ru/join/hbU644XuPRjI790T-eX1KNmPfKuoRqVbMJqG8pOZTXk" target="_blank" class="btn group-btn">Наша группа в Макс</a>
+                <div class="van-item">
+                    <div class="van-title"><span>Автолавка №1</span> <span>П. Сосновка</span></div>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Загрузка кузова: 85%</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                </div>
+
+                <div class="van-item">
+                    <div class="van-title"><span>Автолавка №2</span> <span>П. Березки</span></div>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Загрузка кузова: 60%</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
                 </div>
             </div>
-        </section>
 
-        <!-- Секция контактов с обновленным временем работы -->
-        <section id="contacts" class="contacts-section">
-            <div class="container">
-                <h3>Контакты и адрес</h3>
-                <p><strong>Адрес:</strong> Укажи здесь город, улица, дом</p>
-                <p><strong>Режим работы:</strong> Пн-Вс: 10:00 – 19:00</p>
+            <div class="card">
+                <h2>🤖 Рекомендации ИИ (Анализ спроса)</h2>
+                <div class="ai-tip">
+                    <strong>П. Сосновка (Среда):</strong> В прошлый раз быстро разобрали платья (размер 44). Рекомендация: взять +5 шт.
+                </div>
+                <div class="ai-tip">
+                    <strong>П. Березки (Пятница):</strong> Высокий спрос на демисезонные куртки (размеры 48-52). Рекомендация: догрузить +3 шт.
+                </div>
             </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Светлячок.</p>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <!-- Правая колонка: Каталог и добавление -->
+        <div>
+            <div class="card">
+                <h2>📦 Складской каталог</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Артикул</th>
+                            <th>Товар</th>
+                            <th>Размеры</th>
+                            <th>Остаток</th>
+                        </tr>
+                    كنولوجي
+                    <tbody id="catalogTable">
+                        <tr>
+                            <td>1001</td>
+                            <td>Платье летнее</td>
+                            <td>42, 44, 46</td>
+                            <td>15 шт.</td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>Куртка утепленная</td>
+                            <td>48, 50, 52</td>
+                            <td>8 шт.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2>➕ Добавить товар в систему</h2>
+                <div class="form-group">
+                    <label>Название товара</label>
+                    <input type="text" id="prodName" placeholder="Например: Джинсы женские">
+                </div>
+                <div class="form-group">
+                    <label>Размерная сетка</label>
+                    <input type="text" id="prodSizes" placeholder="Например: 44, 46, 48">
+                </div>
+                <div class="form-group">
+                    <label>Количество на складе</label>
+                    <input type="number" id="prodQty" placeholder="Например: 12">
+                </div>
+                <button onclick="addProduct()">Добавить в каталог</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function addProduct() {
+        const name = document.getElementById('prodName').value;
+        const sizes = document.getElementById('prodSizes').value;
+        const qty = document.getElementById('prodQty').value;
+
+        if(!name || !sizes || !qty) {
+            alert('Пожалуйста, заполните все поля!');
+            return;
+        }
+
+        const table = document.getElementById('catalogTable');
+        const randomArt = Math.floor(1000 + Math.random() * 9000);
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${randomArt}</td>
+            <td>${name}</td>
+            <td>${sizes}</td>
+            <td>${qty} шт.</td>
+        `;
+        table.appendChild(row);
+
+        // Очистка формы
+        document.getElementById('prodName').value = '';
+        document.getElementById('prodSizes').value = '';
+        document.getElementById('prodQty').value = '';
+        
+        alert('Товар успешно добавлен в систему!');
+    }
+</script>
+
 </body>
 </html>
