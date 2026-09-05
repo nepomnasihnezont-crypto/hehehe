@@ -21,7 +21,7 @@
             background-color: var(--bg-main);
             color: var(--text-color);
             margin: 0;
-            padding: 24px;
+            padding: 16px;
         }
 
         .wrapper {
@@ -30,27 +30,31 @@
         }
 
         header {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         header h1 {
-            font-size: 22px;
+            font-size: 20px;
             margin: 0 0 4px 0;
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
             margin: 0;
         }
 
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 16px;
         }
 
+        /* Адаптив для планшетов и телефонов */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
             .grid {
                 grid-template-columns: 1fr;
             }
@@ -60,15 +64,15 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 20px;
+            padding: 16px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .card h2 {
-            font-size: 16px;
+            font-size: 15px;
             margin-top: 0;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             padding-bottom: 8px;
             border-bottom: 1px solid var(--border);
         }
@@ -78,14 +82,14 @@
             background: #f9fafb;
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
+            padding: 10px;
+            margin-bottom: 10px;
         }
         .van-header {
             display: flex;
             justify-content: space-between;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 6px;
         }
         .progress-container {
@@ -111,10 +115,14 @@
         }
 
         /* Таблица */
+        .table-wrapper {
+            overflow-x: auto; /* Скролл таблицы на узких экранах */
+        }
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
+            min-width: 300px;
         }
         th, td {
             text-align: left;
@@ -138,17 +146,17 @@
         }
         .field input {
             width: 100%;
-            padding: 8px 10px;
+            padding: 10px;
             border: 1px solid var(--border);
             border-radius: 6px;
             box-sizing: border-box;
-            font-size: 14px;
+            font-size: 14px; /* Размер 14px+ спасает от зума на iOS при клике */
         }
         button {
             background: var(--accent);
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px;
             border-radius: 6px;
             width: 100%;
             font-weight: 500;
@@ -210,30 +218,32 @@
         <div>
             <div class="card">
                 <h2>Складской каталог</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Артикул</th>
-                            <th>Наименование</th>
-                            <th>Размеры</th>
-                            <th>Остаток</th>
-                        </tr>
-                    </thead>
-                    <tbody id="catalogList">
-                        <tr>
-                            <td>1001</td>
-                            <td>Платье летнее</td>
-                            <td>42, 44, 46</td>
-                            <td>15 шт.</td>
-                        </tr>
-                        <tr>
-                            <td>1002</td>
-                            <td>Куртка утепленная</td>
-                            <td>48, 50, 52</td>
-                            <td>8 шт.</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Артикул</th>
+                                <th>Наименование</th>
+                                <th>Размеры</th>
+                                <th>Остаток</th>
+                            </tr>
+                        </thead>
+                        <tbody id="catalogList">
+                            <tr>
+                                <td>1001</td>
+                                <td>Платье летнее</td>
+                                <td>42, 44, 46</td>
+                                <td>15 шт.</td>
+                            </tr>
+                            <tr>
+                                <td>1002</td>
+                                <td>Куртка утепленная</td>
+                                <td>48, 50, 52</td>
+                                <td>8 шт.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="card">
@@ -260,9 +270,12 @@
     function addNewItem() {
         const name = document.getElementById('itemName').value;
         const sizes = document.getElementById('itemSizes').value;
-        const qty = document.getElementById('itemQty').value;
+        const qty = document.getElementById('itemQty5').value || document.getElementById('itemQty').value;
 
-        if (!name || !sizes || !qty) {
+        // Исправление получения значения quantity
+        const qtyInput = document.getElementById('itemQty').value;
+
+        if (!name || !sizes || !qtyInput) {
             alert('Пожалуйста, заполните все поля');
             return;
         }
@@ -275,7 +288,7 @@
             <td>${art}</td>
             <td>${name}</td>
             <td>${sizes}</td>
-            <td>${qty} шт.</td>
+            <td>${qtyInput} шт.</td>
         `;
         table.appendChild(row);
 
