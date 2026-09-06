@@ -104,14 +104,14 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .village-title {
             font-weight: bold;
             font-size: 14px;
             color: var(--accent);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .tip-item {
@@ -171,6 +171,18 @@
             font-size: 11px;
             width: auto;
             margin-right: 2px;
+        }
+        
+        .inline-form {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .inline-form input {
+            padding: 6px;
+            font-size: 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -242,45 +254,64 @@
 
         <!-- Правая колонка: Склады по деревням и ИИ -->
         <div>
-            <!-- Склады по деревням -->
+            <!-- Склады по деревням с возможностью добавлять/убирать -->
             <div class="card">
                 <h2>Наличие товаров по деревням (у продавцов)</h2>
                 
+                <!-- Поселок Сосновка -->
                 <div class="village-box">
-                    <div class="village-title">Пункт: Поселок Сосновка (Продавец: местный оператор)</div>
-                    <table style="margin-top: 6px;">
+                    <div class="village-title">Пункт: Поселок Сосновка</div>
+                    <table id="sosnovkaTable" style="margin-top: 6px;">
                         <tr>
                             <th>Товар</th>
                             <th>Размер</th>
                             <th>В наличии</th>
+                            <th>Действие</th>
                         </tr>
                         <tr>
                             <td>Платье летнее</td>
                             <td>44</td>
                             <td>3 шт.</td>
+                            <td><button class="btn-danger btn-sm" onclick="this.closest('tr').remove()">Убрать</button></td>
                         </tr>
                         <tr>
                             <td>Куртка утепленная</td>
                             <td>48</td>
                             <td>2 шт.</td>
+                            <td><button class="btn-danger btn-sm" onclick="this.closest('tr').remove()">Убрать</button></td>
                         </tr>
                     </table>
+                    <div class="inline-form">
+                        <input type="text" id="sosnName" placeholder="Товар" style="flex: 2;">
+                        <input type="text" id="sosnSize" placeholder="Размер" style="flex: 1;">
+                        <input type="number" id="sosnQty" placeholder="Шт" style="flex: 1;">
+                        <button class="btn-sm" onclick="addItemToVillage('sosnovkaTable', 'sosnName', 'sosnSize', 'sosnQty')">Добавить</button>
+                    </div>
                 </div>
 
+                <!-- Поселок Калиновка -->
                 <div class="village-box">
-                    <div class="village-title">Пункт: Поселок Калиновка (Продавец: местный оператор)</div>
-                    <table style="margin-top: 6px;">
+                    <div class="village-title">Пункт: Поселок Калиновка</div>
+                    <table id="kalinovkaTable" style="margin-top: 6px;">
                         <tr>
                             <th>Товар</th>
                             <th>Размер</th>
                             <th>В наличии</th>
+                            <th>Действие</th>
                         </tr>
                         <tr>
                             <td>Платье летнее</td>
                             <td>46</td>
                             <td>5 шт.</td>
+                            <td><button class="btn-danger btn-sm" onclick="this.closest('tr').remove()">Убрать</button></td>
                         </tr>
                     </table>
+                    <div class="inline-form">
+                        <input type="text" id="kalName" placeholder="Товар" style="flex: 2;">
+                        <input type="text" id="kalSize" placeholder="Размер" style="flex: 1;">
+                        <input type="number" id="kalQty" placeholder="Шт" style="flex: 1;">
+                        <button class="btn-sm" onclick="addItemToVillage('kalinovkaTable', 'kalName', 'kalSize', 'kalQty')">Добавить</button>
+                    </div>
                 </div>
             </div>
 
@@ -355,6 +386,32 @@
 
         document.getElementById('formTitle').innerText = 'Редактировать товар';
         document.getElementById('saveBtn').innerText = 'Сохранить изменения';
+    }
+
+    // Функция добавления товара на склад конкретной деревни
+    function addItemToVillage(tableId, nameId, sizeId, qtyId) {
+        const name = document.getElementById(nameId).value.trim();
+        const size = document.getElementById(sizeId).value.trim();
+        const qty = document.getElementById(qtyId).value.trim();
+
+        if (!name || !size || !qty) {
+            alert('Заполните поля для товара в деревне!');
+            return;
+        }
+
+        const table = document.getElementById(tableId);
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${name}</td>
+            <td>${size}</td>
+            <td>${qty} шт.</td>
+            <td><button class="btn-danger btn-sm" onclick="this.closest('tr').remove()">Убрать</button></td>
+        `;
+        table.appendChild(row);
+
+        document.getElementById(nameId).value = '';
+        document.getElementById(sizeId).value = '';
+        document.getElementById(qtyId).value = '';
     }
 </script>
 
