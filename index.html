@@ -8,25 +8,25 @@
 </head>
 <body>
 
-<div class="wrapper">
-    <header>
+<div class="app-container">
+    <header class="app-header">
         <h1>Платформа управления мобильной торговой сетью</h1>
         <p>Центральный склад, учет в удаленных населенных пунктах и занятость локальных операторов</p>
     </header>
 
-    <div class="grid">
-        <!-- Левая колонка: Центральный склад и добавление товаров -->
-        <div>
+    <div class="app-grid">
+        <!-- Левая колонка: Центральный склад -->
+        <div class="column">
             <div class="card">
                 <h2>Центральный склад</h2>
-                <div class="table-responsive">
+                <div class="table-wrap">
                     <table>
                         <thead>
                             <tr>
                                 <th>Артикул</th>
-                                <th>Наименование</th>
+                                <th>Товар</th>
                                 <th>Размеры</th>
-                                <th>На складе</th>
+                                <th>Кол-во</th>
                                 <th>Действия</th>
                             </tr>
                         </thead>
@@ -37,8 +37,8 @@
                                 <td>42, 44, 46</td>
                                 <td>45 шт.</td>
                                 <td>
-                                    <button class="btn-sm" onclick="editRow(this)">Изм</button>
-                                    <button class="btn-sm btn-danger" onclick="deleteRow(this)">Уд</button>
+                                    <button class="btn-action" onclick="editRow(this)">Изм</button>
+                                    <button class="btn-action btn-del" onclick="deleteRow(this)">Уд</button>
                                 </td>
                             </tr>
                             <tr>
@@ -47,8 +47,8 @@
                                 <td>48, 50, 52</td>
                                 <td>20 шт.</td>
                                 <td>
-                                    <button class="btn-sm" onclick="editRow(this)">Изм</button>
-                                    <button class="btn-sm btn-danger" onclick="deleteRow(this)">Уд</button>
+                                    <button class="btn-action" onclick="editRow(this)">Изм</button>
+                                    <button class="btn-action btn-del" onclick="deleteRow(this)">Уд</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -58,121 +58,120 @@
 
             <div class="card">
                 <h2 id="formTitle">Добавить товар на склад</h2>
-                <div class="field">
+                <div class="form-group">
                     <label>Наименование товара</label>
                     <input type="text" id="itemName" placeholder="Например: Джинсы">
                 </div>
-                <div class="field">
+                <div class="form-group">
                     <label>Доступные размеры</label>
                     <input type="text" id="itemSizes" placeholder="Например: 44, 46, 48">
                 </div>
-                <div class="field">
+                <div class="form-group">
                     <label>Количество</label>
                     <input type="number" id="itemQty" placeholder="Например: 30">
                 </div>
-                <button onclick="saveItem()" id="saveBtn">Добавить в каталог</button>
+                <button class="btn-primary" onclick="saveItem()" id="saveBtn">Добавить в каталог</button>
             </div>
         </div>
 
-        <!-- Правая колонка: Управление точками, остатками и ИИ -->
-        <div>
-            <!-- Блок остатков на точках с табами -->
+        <!-- Правая колонка: Управление точками и ИИ -->
+        <div class="column">
             <div class="card">
                 <h2>Остатки на точках и операторы</h2>
                 
-                <!-- Кнопки-переключатели деревень -->
-                <div class="tabs" id="villageTabs">
+                <!-- Табы деревень -->
+                <div class="tabs-list" id="villageTabs">
                     <button class="tab-btn active" onclick="switchVillage('sosnovka', event)">Поселок Сосновка</button>
                     <button class="tab-btn" onclick="switchVillage('kalinovka', event)">Поселок Калиновка</button>
                 </div>
 
-                <!-- Панель Сосновка -->
+                <!-- Сосновка -->
                 <div id="sosnovka" class="village-panel active">
-                    <div class="operator-meta">
-                        <div>Оператор на точке: <strong>Алексей М.</strong></div>
-                        <div class="status-badge">Данные обновлены</div>
+                    <div class="operator-box">
+                        <span>Оператор: <strong>Алексей М.</strong></span>
+                        <span class="badge">Активен</span>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-wrap">
                         <table id="sosnovkaTable">
                             <tr>
                                 <th>Товар</th>
                                 <th>Размер</th>
-                                <th>В наличии</th>
+                                <th>Наличие</th>
                                 <th>Действие</th>
                             </tr>
                             <tr>
                                 <td>Платье летнее</td>
                                 <td>44</td>
                                 <td>3 шт.</td>
-                                <td><button class="btn-sm btn-danger" onclick="this.closest('tr').remove()">Убрать</button></td>
+                                <td><button class="btn-action btn-del" onclick="this.closest('tr').remove()">Убрать</button></td>
                             </tr>
                         </table>
                     </div>
-                    <div class="inline-controls">
+                    <div class="inline-form">
                         <input type="text" id="sosnName" placeholder="Товар">
                         <input type="text" id="sosnSize" placeholder="Размер">
                         <input type="number" id="sosnQty" placeholder="Шт">
-                        <button class="btn-add-inline" onclick="addItemToVillage('sosnovkaTable', 'sosnName', 'sosnSize', 'sosnQty')">+</button>
+                        <button class="btn-primary" onclick="addItemToVillage('sosnovkaTable', 'sosnName', 'sosnSize', 'sosnQty')">+</button>
                     </div>
                 </div>
 
-                <!-- Панель Калиновка -->
+                <!-- Калиновка -->
                 <div id="kalinovka" class="village-panel">
-                    <div class="operator-meta">
-                        <div>Оператор на точке: <strong>Елена В.</strong></div>
-                        <div class="status-badge">Данные обновлены</div>
+                    <div class="operator-box">
+                        <span>Оператор: <strong>Елена В.</strong></span>
+                        <span class="badge">Активен</span>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-wrap">
                         <table id="kalinovkaTable">
                             <tr>
                                 <th>Товар</th>
                                 <th>Размер</th>
-                                <th>В наличии</th>
+                                <th>Наличие</th>
                                 <th>Действие</th>
                             </tr>
                             <tr>
                                 <td>Платье летнее</td>
                                 <td>46</td>
                                 <td>5 шт.</td>
-                                <td><button class="btn-sm btn-danger" onclick="this.closest('tr').remove()">Убрать</button></td>
+                                <td><button class="btn-action btn-del" onclick="this.closest('tr').remove()">Убрать</button></td>
                             </tr>
                         </table>
                     </div>
-                    <div class="inline-controls">
+                    <div class="inline-form">
                         <input type="text" id="kalName" placeholder="Товар">
                         <input type="text" id="kalSize" placeholder="Размер">
                         <input type="number" id="kalQty" placeholder="Шт">
-                        <button class="btn-add-inline" onclick="addItemToVillage('kalinovkaTable', 'kalName', 'kalSize', 'kalQty')">+</button>
+                        <button class="btn-primary" onclick="addItemToVillage('kalinovkaTable', 'kalName', 'kalSize', 'kalQty')">+</button>
                     </div>
                 </div>
 
-                <!-- Контейнер для динамических новых деревень -->
+                <!-- Контейнер для новых точек -->
                 <div id="dynamicPanelsContainer"></div>
             </div>
 
-            <!-- Форма добавления нового населенного пункта -->
+            <!-- Добавление пункта -->
             <div class="card">
-                <h2>Добавить новый населенный пункт</h2>
-                <div class="field">
-                    <label>Название поселка / села</label>
+                <h2>Добавить новый пункт</h2>
+                <div class="form-group">
+                    <label>Название поселка</label>
                     <input type="text" id="newVillageName" placeholder="Например: с. Михайловка">
                 </div>
-                <div class="field">
-                    <label>Имя местного оператора</label>
+                <div class="form-group">
+                    <label>Имя оператора</label>
                     <input type="text" id="newOperatorName" placeholder="Например: Иван П.">
                 </div>
-                <button onclick="addNewVillage()">Добавить пункт в сеть</button>
+                <button class="btn-primary" onclick="addNewVillage()">Добавить пункт в сеть</button>
             </div>
 
-            <!-- ИИ-ассистент -->
+            <!-- ИИ-чат -->
             <div class="card">
                 <h2>ИИ-ассистент платформы</h2>
-                <div class="chat-box" id="chatContainer">
+                <div class="chat-container" id="chatContainer">
                     <div class="chat-msg ai">Привет! Задай мне вопрос по остаткам или спроси рекомендацию по товарам для отправки в деревни.</div>
                 </div>
-                <div class="inline-controls" style="margin-top: 0;">
-                    <input type="text" id="chatInput" placeholder="Спроси ИИ..." onkeypress="handleChatPress(event)" style="flex: 1;">
-                    <button class="btn-add-inline" onclick="sendToAI()">Спросить</button>
+                <div class="chat-input-row">
+                    <input type="text" id="chatInput" placeholder="Спроси ИИ..." onkeypress="handleChatPress(event)">
+                    <button class="btn-primary" onclick="sendToAI()">Спросить</button>
                 </div>
             </div>
         </div>
