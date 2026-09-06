@@ -1,10 +1,10 @@
 :root {
-    --bg-main: #f8fafc;
-    --card-bg: #ffffff;
-    --text-color: #1e293b;
-    --text-muted: #64748b;
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
     --danger: #ef4444;
     --danger-hover: #dc2626;
     --success: #22c55e;
@@ -14,74 +14,70 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-color);
-    margin: 0;
-    padding: 24px;
+    background-color: var(--bg);
+    color: var(--text);
+    padding: 20px;
     line-height: 1.5;
 }
 
-.wrapper {
+.app-container {
     max-width: 1100px;
     margin: 0 auto;
-    width: 100%;
 }
 
-header {
-    margin-bottom: 24px;
-    background: var(--card-bg);
-    padding: 20px 24px;
+.app-header {
+    background: var(--card);
+    padding: 20px;
     border-radius: var(--radius);
     border: 1px solid var(--border);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    margin-bottom: 20px;
 }
 
-header h1 {
-    font-size: 20px;
-    margin: 0 0 4px 0;
-    color: var(--text-color);
+.app-header h1 {
+    font-size: 18px;
+    margin-bottom: 4px;
 }
 
-header p {
-    color: var(--text-muted);
+.app-header p {
     font-size: 13px;
-    margin: 0;
+    color: var(--muted);
 }
 
-/* Сетка интерфейса */
-.grid {
+/* Строгий и гибкий адаптивный грид */
+.app-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 20px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .card {
-    background: var(--card-bg);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 20px;
-    margin-bottom: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-    width: 100%;
-    overflow: hidden;
 }
 
 .card h2 {
     font-size: 15px;
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-weight: 600;
+    margin-bottom: 14px;
 }
 
-/* Таблицы */
-.table-responsive {
+/* Скролл для таблиц на мобилках */
+.table-wrap {
     width: 100%;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     margin-bottom: 12px;
 }
 
@@ -94,43 +90,40 @@ table {
 
 th, td {
     text-align: left;
-    padding: 10px 8px;
+    padding: 8px;
     border-bottom: 1px solid var(--border);
 }
 
 th {
-    color: var(--text-muted);
+    color: var(--muted);
     font-weight: 500;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
-/* Вкладки деревень */
-.tabs {
+/* Табы */
+.tabs-list {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     border-bottom: 1px solid var(--border);
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 }
 
 .tab-btn {
     background: #f1f5f9;
-    color: var(--text-muted);
+    color: var(--muted);
     border: none;
-    padding: 8px 14px;
+    padding: 7px 12px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
-    flex-grow: 1;
-    text-align: center;
 }
 
 .tab-btn.active {
-    background: var(--accent);
+    background: var(--primary);
     color: white;
 }
 
@@ -142,185 +135,165 @@ th {
     display: block;
 }
 
-/* Мета-информация об операторе */
-.operator-meta {
+/* Оператор */
+.operator-box {
     background: #f8fafc;
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 10px 12px;
-    margin-bottom: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
     font-size: 12px;
-    color: var(--text-muted);
+    color: var(--muted);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
 }
 
-.operator-meta strong {
-    color: var(--text-color);
+.operator-box strong {
+    color: var(--text);
 }
 
-.status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+.badge {
     color: var(--success);
     font-weight: 500;
 }
-.status-badge::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background: var(--success);
-    border-radius: 50%;
-    display: inline-block;
-}
 
-/* Формы и поля */
-.field {
+/* Формы и элементы */
+.form-group {
     margin-bottom: 12px;
 }
 
-.field label {
+.form-group label {
     display: block;
     font-size: 12px;
-    color: var(--text-muted);
+    color: var(--muted);
     margin-bottom: 4px;
-    font-weight: 500;
 }
 
-.field input {
+input[type="text"],
+input[type="number"] {
     width: 100%;
-    padding: 10px 12px;
+    padding: 10px;
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-size: 14px; /* Увеличено до 14px, чтобы на айфонах не было зума при клике */
-    background: #fcfcfc;
+    font-size: 14px;
+    background: #fafafa;
 }
 
-button {
-    background: var(--accent);
+.btn-primary {
+    background: var(--primary);
     color: white;
     border: none;
-    padding: 11px 16px;
+    padding: 10px 16px;
     border-radius: 6px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    font-size: 14px;
     width: 100%;
-    transition: background 0.2s;
 }
 
-button:hover {
-    background: var(--accent-hover);
+.btn-primary:hover {
+    background: var(--primary-hover);
 }
 
-.btn-danger {
-    background: transparent;
-    color: var(--danger);
-    border: 1px solid #fee2e2;
-}
-.btn-danger:hover {
-    background: #fef2f2;
-    color: var(--danger-hover);
-}
-
-.btn-sm {
-    padding: 6px 10px;
-    font-size: 12px;
-    width: auto;
-    margin-right: 4px;
+.btn-action {
+    padding: 4px 8px;
+    font-size: 11px;
+    border: 1px solid var(--border);
+    background: white;
     border-radius: 4px;
+    cursor: pointer;
+    margin-right: 4px;
 }
 
-/* Элементы управления внутри точек (адаптируются под мобилки) */
-.inline-controls {
-    display: flex;
-    gap: 8px;
-    margin-top: 14px;
+.btn-del {
+    color: var(--danger);
+    border-color: #fee2e2;
+}
+.btn-del:hover {
+    background: #fef2f2;
+}
+
+/* Инлайн-формы для добавления товара на точках (идеально адаптируются) */
+.inline-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.inline-form input {
+    padding: 8px;
+    font-size: 13px;
+}
+
+.inline-form button {
+    width: auto;
+    padding: 0 14px;
+}
+
+/* Чат */
+.chat-container {
     background: #f8fafc;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    flex-wrap: wrap;
-}
-
-.inline-controls input {
-    flex: 1 1 120px;
-    padding: 9px 10px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 14px;
-    background: #fff;
-}
-
-.btn-add-inline {
-    flex: 1 1 100% !important;
-    width: 100% !important;
-}
-
-/* Чат с ИИ */
-.chat-box {
-    background: #f8fafc;
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 12px;
-    height: 150px;
+    padding: 10px;
+    height: 130px;
     overflow-y: auto;
     font-size: 13px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .chat-msg {
-    padding: 8px 12px;
-    border-radius: 8px;
-    max-width: 90%;
+    padding: 6px 10px;
+    border-radius: 6px;
+    max-width: 85%;
 }
 
 .chat-msg.user {
     background: #e2e8f0;
     align-self: flex-end;
-    color: var(--text-color);
 }
 
 .chat-msg.ai {
     background: #eff6ff;
-    align-self: flex-start;
     color: #1e40af;
+    align-self: flex-start;
     border: 1px solid #dbeafe;
 }
 
-/* Глобальный медиа-запрос для мобильных устройств (ширина до 768px) */
+.chat-input-row {
+    display: flex;
+    gap: 6px;
+}
+
+.chat-input-row input {
+    flex: 1;
+}
+
+.chat-input-row button {
+    width: auto;
+}
+
+/* АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ (до 768px) */
 @media (max-width: 768px) {
     body {
         padding: 10px;
     }
 
-    .grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+    .app-grid {
+        grid-template-columns: 1fr; /* Вся сетка в один столбец */
     }
 
-    header {
-        padding: 14px;
-        margin-bottom: 12px;
+    .inline-form {
+        grid-template-columns: 1fr; /* На телефоне поля ввода внутри точек стают друг под другом */
     }
 
-    header h1 {
-        font-size: 18px;
-    }
-
-    .card {
-        padding: 14px;
-        margin-bottom: 12px;
-    }
-
-    .inline-controls input {
-        flex: 1 1 100%; /* На смартфонах поля ввода выстраиваются в столбик друг под другом */
+    .inline-form button {
+        width: 100% !important;
+        padding: 10px;
     }
 }
