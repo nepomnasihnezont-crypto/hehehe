@@ -12,6 +12,10 @@
     --radius: 12px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-main);
@@ -24,6 +28,7 @@ body {
 .wrapper {
     max-width: 1100px;
     margin: 0 auto;
+    width: 100%;
 }
 
 header {
@@ -61,6 +66,8 @@ header p {
     padding: 20px;
     margin-bottom: 24px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    width: 100%;
+    overflow: hidden;
 }
 
 .card h2 {
@@ -70,34 +77,18 @@ header p {
     font-weight: 600;
 }
 
-/* Адаптивность для мобильных и планшетов */
-@media (max-width: 768px) {
-    body {
-        padding: 12px;
-    }
-    .grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-    header {
-        padding: 16px;
-    }
-    .card {
-        padding: 14px;
-    }
-}
-
 /* Таблицы */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 12px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
-    margin-bottom: 12px;
     white-space: nowrap;
 }
 
@@ -134,7 +125,8 @@ th {
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
-    width: auto;
+    flex-grow: 1;
+    text-align: center;
 }
 
 .tab-btn.active {
@@ -201,11 +193,10 @@ th {
 
 .field input {
     width: 100%;
-    padding: 9px 12px;
+    padding: 10px 12px;
     border: 1px solid var(--border);
     border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 13px;
+    font-size: 14px; /* Увеличено до 14px, чтобы на айфонах не было зума при клике */
     background: #fcfcfc;
 }
 
@@ -213,11 +204,11 @@ button {
     background: var(--accent);
     color: white;
     border: none;
-    padding: 10px 16px;
+    padding: 11px 16px;
     border-radius: 6px;
     font-weight: 500;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
     width: 100%;
     transition: background 0.2s;
 }
@@ -237,40 +228,37 @@ button:hover {
 }
 
 .btn-sm {
-    padding: 4px 8px;
-    font-size: 11px;
+    padding: 6px 10px;
+    font-size: 12px;
     width: auto;
     margin-right: 4px;
     border-radius: 4px;
 }
 
+/* Элементы управления внутри точек (адаптируются под мобилки) */
 .inline-controls {
     display: flex;
     gap: 8px;
     margin-top: 14px;
     background: #f8fafc;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
     border: 1px solid var(--border);
+    flex-wrap: wrap;
 }
 
 .inline-controls input {
-    flex: 2;
-    padding: 8px;
+    flex: 1 1 120px;
+    padding: 9px 10px;
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-size: 13px;
-    box-sizing: border-box;
-    min-width: 0;
-}
-
-.inline-controls input:nth-child(3) {
-    flex: 1;
+    font-size: 14px;
+    background: #fff;
 }
 
 .btn-add-inline {
-    width: auto !important;
-    padding: 0 14px !important;
+    flex: 1 1 100% !important;
+    width: 100% !important;
 }
 
 /* Чат с ИИ */
@@ -279,7 +267,7 @@ button:hover {
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 12px;
-    height: 130px;
+    height: 150px;
     overflow-y: auto;
     font-size: 13px;
     margin-bottom: 12px;
@@ -291,7 +279,7 @@ button:hover {
 .chat-msg {
     padding: 8px 12px;
     border-radius: 8px;
-    max-width: 85%;
+    max-width: 90%;
 }
 
 .chat-msg.user {
@@ -305,4 +293,34 @@ button:hover {
     align-self: flex-start;
     color: #1e40af;
     border: 1px solid #dbeafe;
+}
+
+/* Глобальный медиа-запрос для мобильных устройств (ширина до 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    header {
+        padding: 14px;
+        margin-bottom: 12px;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+
+    .card {
+        padding: 14px;
+        margin-bottom: 12px;
+    }
+
+    .inline-controls input {
+        flex: 1 1 100%; /* На смартфонах поля ввода выстраиваются в столбик друг под другом */
+    }
 }
