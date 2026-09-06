@@ -3,26 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мобильная торговая сеть (ИИ-платформа)</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ИИ-платформа: Управление мобильной торговой сетью</title>
+    <style>
+        :root {
+            --bg-main: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --border: #e5e7eb;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 24px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        header h1 {
+            font-size: 22px;
+            margin: 0 0 6px 0;
+            color: var(--accent);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .van-box {
+            background: #f9fafb;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .van-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .van-route {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .progress-container {
+            background: var(--border);
+            border-radius: 4px;
+            height: 6px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            background: var(--accent);
+            height: 100%;
+        }
+
+        .tip-item {
+            font-size: 13px;
+            padding: 12px;
+            background: #eff6ff;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 13px;
+        }
+
+        button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 13px;
+            width: 100%;
+        }
+
+        button:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+        .btn-danger:hover {
+            background: var(--danger-hover);
+        }
+
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 11px;
+            width: auto;
+            margin-right: 4px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="wrapper">
     <header>
-        <h1>Управление автолавками (Платформа v0.1)</h1>
-        <p>Контроль маршрутов, ИИ-прогнозов и выездной торговли одеждой</p>
+        <h1>ИИ-платформа управления мобильной торговой сетью</h1>
+        <p>Автоматизация выездной торговли одежды в отдаленных населенных пунктах с поддержкой рабочих мест для людей с ОВЗ</p>
     </header>
 
     <div class="grid">
+        <!-- Левая колонка: Маршруты автолавок и ИИ-аналитика -->
         <div>
             <div class="card">
-                <h2>Текущие рейсы (Автолавки)</h2>
+                <h2>Маршруты и рейсы автолавок</h2>
                 <div id="tripsContainer">
                     <div class="van-box">
                         <div class="van-header">
-                            <span>Автолавка №1</span>
-                            <span>85% загрузка</span>
+                            <span>Автолавка №1 (Оператор: Иванов И.)</span>
+                            <span>85% заполнено</span>
                         </div>
                         <div class="van-route">Маршрут: П. Сосновка $\rightarrow$ П. Калиновка</div>
                         <div class="progress-container">
@@ -33,8 +221,8 @@
 
                     <div class="van-box">
                         <div class="van-header">
-                            <span>Автолавка №2</span>
-                            <span>60% загрузка</span>
+                            <span>Автолавка №2 (Оператор: Петров П.)</span>
+                            <span>60% заполнено</span>
                         </div>
                         <div class="van-route">Маршрут: П. Березки $\rightarrow$ П. Озерки</div>
                         <div class="progress-container">
@@ -44,82 +232,71 @@
                     </div>
                 </div>
 
-                <h3 style="font-size: 13px; margin-top: 15px; margin-bottom: 8px;">Добавить новый маршрут</h3>
+                <h3 style="font-size: 13px; margin: 16px 0 8px 0;">Добавить новый маршрут</h3>
                 <div class="field">
-                    <input type="text" id="vanTitle" placeholder="Название (например: Автолавка №3)">
+                    <input type="text" id="vanTitle" placeholder="Автолавка и оператор (например: Автолавка №3)">
                 </div>
                 <div class="field">
                     <input type="text" id="routeText" placeholder="Маршрут (например: П. Заречное $\rightarrow$ П. Лесное)">
                 </div>
                 <div class="field">
-                    <input type="number" id="fillPercent" placeholder="Загрузка в % (например: 75)">
+                    <input type="number" id="fillPercent" placeholder="Заполнение в % (например: 75)">
                 </div>
                 <button onclick="addTrip()">Добавить рейс</button>
             </div>
 
-            <div class="card driver-panel">
-                <h2>Погрузка (Для водителя)</h2>
-                <div id="driverChecklist">
-                    <label class="check-item"><input type="checkbox"> Товар #1 (Арт. 1001) — 10 шт.</label>
-                    <label class="check-item"><input type="checkbox"> Товар #2 (Арт. 1005) — 5 шт.</label>
-                    <label class="check-item"><input type="checkbox"> Товар #3 (Арт. 1009) — 8 шт.</label>
+            <div class="card">
+                <h2>ИИ-аналитика и прогноз спроса</h2>
+                <div class="tip-item">
+                    <strong>П. Сосновка:</strong> В прошлый раз быстро разобрали платья (размер 44). Рекомендация ИИ: <strong>взять +5 шт.</strong>
                 </div>
-                <button onclick="alert('Погрузка подтверждена! Автолавка готова к выезду.')" style="margin-top: 10px; background: #10b981;">Начать погрузку</button>
+                <div class="tip-item">
+                    <strong>П. Березки:</strong> Повышенный спрос на куртки. Рекомендация ИИ: <strong>догрузить размеры 48–52.</strong>
+                </div>
             </div>
         </div>
 
+        <!-- Правая колонка: Складской каталог и Управление -->
         <div>
             <div class="card">
-                <h2>Аналитика: Прогноз спроса (AI)</h2>
-                <div class="tip-item">
-                    <strong>П. Сосновка (Среда):</strong> 44 размер (желтые платья) — рекомендация: <strong>взять +5</strong>
-                </div>
-                <div class="tip-item">
-                    <strong>П. Калиновка (Пятница):</strong> 46 размер (куртки) — рекомендация: <strong>взять +2</strong>
-                </div>
+                <h2>Центральный складской каталог</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Артикул</th>
+                            <th>Наименование</th>
+                            <th>Размеры</th>
+                            <th>Остаток</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="catalogList">
+                        <tr>
+                            <td>1001</td>
+                            <td>Платье летнее</td>
+                            <td>42, 44, 46</td>
+                            <td>15 шт.</td>
+                            <td>
+                                <button class="btn-sm" onclick="editRow(this)">Изм</button>
+                                <button class="btn-danger btn-sm" onclick="deleteRow(this)">Уд</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>Куртка утепленная</td>
+                            <td>48, 50, 52</td>
+                            <td>8 шт.</td>
+                            <td>
+                                <button class="btn-sm" onclick="editRow(this)">Изм</button>
+                                <button class="btn-danger btn-sm" onclick="deleteRow(this)">Уд</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="card">
-                <h2>Каталог: Основной склад</h2>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Артикул</th>
-                                <th>Наименование</th>
-                                <th>Размеры</th>
-                                <th>Ост.</th>
-                                <th>Действия</th>
-                            </tr>
-                        </thead>
-                        <tbody id="catalogList">
-                            <tr>
-                                <td>1001</td>
-                                <td>Платье летнее</td>
-                                <td>42, 44, 46</td>
-                                <td>15</td>
-                                <td>
-                                    <button class="btn-sm" onclick="editRow(this)">Изм</button>
-                                    <button class="btn-danger btn-sm" onclick="deleteRow(this)">Уд</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1002</td>
-                                <td>Куртка утепленная</td>
-                                <td>48, 50, 52</td>
-                                <td>8</td>
-                                <td>
-                                    <button class="btn-sm" onclick="editRow(this)">Изм</button>
-                                    <button class="btn-danger btn-sm" onclick="deleteRow(this)">Уд</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2 id="formTitle">Добавить товар</h2>
+                <h2 id="formTitle">Добавить товар в каталог</h2>
                 <div class="field">
                     <label>Наименование</label>
                     <input type="text" id="itemName" placeholder="Например: Джинсы">
@@ -138,6 +315,97 @@
     </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+    let currentEditRow = null;
+
+    function saveItem() {
+        const name = document.getElementById('itemName').value.trim();
+        const sizes = document.getElementById('itemSizes').value.trim();
+        const qty = document.getElementById('itemQty').value.trim();
+
+        if (!name || !sizes || !qty) {
+            alert('Пожалуйста, заполните все поля!');
+            return;
+        }
+
+        const table = document.getElementById('catalogList');
+
+        if (currentEditRow) {
+            currentEditRow.cells[1].innerText = name;
+            currentEditRow.cells[2].innerText = sizes;
+            currentEditRow.cells[3].innerText = qty + ' шт.';
+            currentEditRow = null;
+            document.getElementById('formTitle').innerText = 'Добавить товар в каталог';
+            document.getElementById('saveBtn').innerText = 'Добавить в каталог';
+        } else {
+            const art = Math.floor(1000 + Math.random() * 9000);
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${art}</td>
+                <td>${name}</td>
+                <td>${sizes}</td>
+                <td>${qty} шт.</td>
+                <td>
+                    <button class="btn-sm" onclick="editRow(this)">Изм</button>
+                    <button class="btn-danger btn-sm" onclick="deleteRow(this)">Уд</button>
+                </td>
+            `;
+            table.appendChild(row);
+        }
+
+        document.getElementById('itemName').value = '';
+        document.getElementById('itemSizes').value = '';
+        document.getElementById('itemQty').value = '';
+    }
+
+    function deleteRow(btn) {
+        btn.closest('tr').remove();
+    }
+
+    function editRow(btn) {
+        const row = btn.closest('tr');
+        currentEditRow = row;
+
+        document.getElementById('itemName').value = row.cells[1].innerText;
+        document.getElementById('itemSizes').value = row.cells[2].innerText;
+        document.getElementById('itemQty').value = parseInt(row.cells[3].innerText);
+
+        document.getElementById('formTitle').innerText = 'Редактировать товар';
+        document.getElementById('saveBtn').innerText = 'Сохранить изменения';
+    }
+
+    function addTrip() {
+        const title = document.getElementById('vanTitle').value.trim();
+        const route = document.getElementById('routeText').value.trim();
+        const fill = document.getElementById('fillPercent').value.trim();
+
+        if (!title || !route || !fill) {
+            alert('Заполните все поля для рейса!');
+            return;
+        }
+
+        const container = document.getElementById('tripsContainer');
+        const box = document.createElement('div');
+        box.className = 'van-box';
+        box.innerHTML = `
+            <div class="van-header">
+                <span>${title}</span>
+                <span>${fill}% заполнено</span>
+            </div>
+            <div class="van-route">Маршрут: ${route}</div>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: ${fill}%;"></div>
+            </div>
+            <button class="btn-danger btn-sm" onclick="this.closest('.van-box').remove()">Удалить рейс</button>
+        `;
+
+        container.appendChild(box);
+
+        document.getElementById('vanTitle').value = '';
+        document.getElementById('routeText').value = '';
+        document.getElementById('fillPercent').value = '';
+    }
+</script>
+
 </body>
 </html>
