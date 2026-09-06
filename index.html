@@ -3,36 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ИИ-платформа: Управление мобильной торговой сетью</title>
+    <title>ИИ-платформа: Управление торговой сетью</title>
     <style>
         :root {
-            --bg-main: #f3f4f6;
+            --bg-main: #f4f6f8;
             --card-bg: #ffffff;
-            --text-color: #1f2937;
-            --text-muted: #6b7280;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --danger: #ef4444;
-            --danger-hover: #dc2626;
-            --border: #e5e7eb;
-            --radius: 12px;
+            --text-color: #2c3e50;
+            --text-muted: #7f8c8d;
+            --accent: #2980b9;
+            --accent-hover: #1f618d;
+            --danger: #c0392b;
+            --danger-hover: #962d22;
+            --border: #e2e8f0;
+            --radius: 10px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: Arial, sans-serif;
             background-color: var(--bg-main);
             color: var(--text-color);
             margin: 0;
             padding: 20px;
+            line-height: 1.4;
         }
 
         .wrapper {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         header {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             background: var(--card-bg);
             padding: 20px;
             border-radius: var(--radius);
@@ -40,14 +41,14 @@
         }
 
         header h1 {
-            font-size: 22px;
-            margin: 0 0 6px 0;
+            font-size: 20px;
+            margin: 0 0 5px 0;
             color: var(--accent);
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
             margin: 0;
         }
 
@@ -67,95 +68,75 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 16px;
             margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .card h2 {
-            font-size: 16px;
+            font-size: 15px;
             margin-top: 0;
-            margin-bottom: 14px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .van-box {
-            background: #f9fafb;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
             margin-bottom: 12px;
-        }
-
-        .van-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            font-size: 13px;
-            margin-bottom: 4px;
-        }
-
-        .van-route {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .progress-container {
-            background: var(--border);
-            border-radius: 4px;
-            height: 6px;
-            overflow: hidden;
-            margin-bottom: 8px;
-        }
-
-        .progress-bar {
-            background: var(--accent);
-            height: 100%;
-        }
-
-        .tip-item {
-            font-size: 13px;
-            padding: 12px;
-            background: #eff6ff;
-            border-left: 4px solid var(--accent);
-            border-radius: 0 6px 6px 0;
-            margin-bottom: 10px;
-            line-height: 1.4;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--bg-main);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
+            margin-bottom: 10px;
         }
 
         th, td {
             text-align: left;
-            padding: 10px 8px;
+            padding: 8px 6px;
             border-bottom: 1px solid var(--border);
         }
 
         th {
             color: var(--text-muted);
-            font-weight: 500;
+            font-weight: bold;
+        }
+
+        .village-box {
+            background: #fafbfc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .village-title {
+            font-weight: bold;
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .tip-item {
+            font-size: 13px;
+            padding: 10px;
+            background: #ebf5fb;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 8px;
         }
 
         .field {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .field label {
             display: block;
             font-size: 12px;
             color: var(--text-muted);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
-        .field input {
+        .field input, .field select {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid var(--border);
             border-radius: 6px;
             box-sizing: border-box;
@@ -166,9 +147,9 @@
             background: var(--accent);
             color: white;
             border: none;
-            padding: 10px 16px;
+            padding: 9px 14px;
             border-radius: 6px;
-            font-weight: 500;
+            font-weight: bold;
             cursor: pointer;
             font-size: 13px;
             width: 100%;
@@ -186,10 +167,10 @@
         }
 
         .btn-sm {
-            padding: 4px 8px;
+            padding: 3px 6px;
             font-size: 11px;
             width: auto;
-            margin-right: 4px;
+            margin-right: 2px;
         }
     </style>
 </head>
@@ -197,85 +178,31 @@
 
 <div class="wrapper">
     <header>
-        <h1>ИИ-платформа управления мобильной торговой сетью</h1>
-        <p>Автоматизация выездной торговли одежды в отдаленных населенных пунктах с поддержкой рабочих мест для людей с ОВЗ</p>
+        <h1>Платформа управления мобильной торговой сетью</h1>
+        <p>Контроль общего склада, остатков в деревнях и рекомендации искусственного интеллекта</p>
     </header>
 
     <div class="grid">
-        <!-- Левая колонка: Маршруты автолавок и ИИ-аналитика -->
+        <!-- Левая колонка: Общий склад и добавление товаров -->
         <div>
             <div class="card">
-                <h2>Маршруты и рейсы автолавок</h2>
-                <div id="tripsContainer">
-                    <div class="van-box">
-                        <div class="van-header">
-                            <span>Автолавка №1 (Оператор: Иванов И.)</span>
-                            <span>85% заполнено</span>
-                        </div>
-                        <div class="van-route">Маршрут: П. Сосновка $\rightarrow$ П. Калиновка</div>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: 85%;"></div>
-                        </div>
-                        <button class="btn-danger btn-sm" onclick="this.closest('.van-box').remove()">Удалить рейс</button>
-                    </div>
-
-                    <div class="van-box">
-                        <div class="van-header">
-                            <span>Автолавка №2 (Оператор: Петров П.)</span>
-                            <span>60% заполнено</span>
-                        </div>
-                        <div class="van-route">Маршрут: П. Березки $\rightarrow$ П. Озерки</div>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: 60%;"></div>
-                        </div>
-                        <button class="btn-danger btn-sm" onclick="this.closest('.van-box').remove()">Удалить рейс</button>
-                    </div>
-                </div>
-
-                <h3 style="font-size: 13px; margin: 16px 0 8px 0;">Добавить новый маршрут</h3>
-                <div class="field">
-                    <input type="text" id="vanTitle" placeholder="Автолавка и оператор (например: Автолавка №3)">
-                </div>
-                <div class="field">
-                    <input type="text" id="routeText" placeholder="Маршрут (например: П. Заречное $\rightarrow$ П. Лесное)">
-                </div>
-                <div class="field">
-                    <input type="number" id="fillPercent" placeholder="Заполнение в % (например: 75)">
-                </div>
-                <button onclick="addTrip()">Добавить рейс</button>
-            </div>
-
-            <div class="card">
-                <h2>ИИ-аналитика и прогноз спроса</h2>
-                <div class="tip-item">
-                    <strong>П. Сосновка:</strong> В прошлый раз быстро разобрали платья (размер 44). Рекомендация ИИ: <strong>взять +5 шт.</strong>
-                </div>
-                <div class="tip-item">
-                    <strong>П. Березки:</strong> Повышенный спрос на куртки. Рекомендация ИИ: <strong>догрузить размеры 48–52.</strong>
-                </div>
-            </div>
-        </div>
-
-        <!-- Правая колонка: Складской каталог и Управление -->
-        <div>
-            <div class="card">
-                <h2>Центральный складской каталог</h2>
+                <h2>Центральный (общий) склад</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Артикул</th>
                             <th>Наименование</th>
                             <th>Размеры</th>
-                            <th>Остаток</th>
+                            <th>На складе</th>
                             <th>Действия</th>
                         </tr>
                     </thead>
-                    <tbody id="catalogList">
+                    <tbody id="centralStockList">
                         <tr>
                             <td>1001</td>
                             <td>Платье летнее</td>
                             <td>42, 44, 46</td>
-                            <td>15 шт.</td>
+                            <td>45 шт.</td>
                             <td>
                                 <button class="btn-sm" onclick="editRow(this)">Изм</button>
                                 <button class="btn-danger btn-sm" onclick="deleteRow(this)">Уд</button>
@@ -285,7 +212,7 @@
                             <td>1002</td>
                             <td>Куртка утепленная</td>
                             <td>48, 50, 52</td>
-                            <td>8 шт.</td>
+                            <td>20 шт.</td>
                             <td>
                                 <button class="btn-sm" onclick="editRow(this)">Изм</button>
                                 <button class="btn-danger btn-sm" onclick="deleteRow(this)">Уд</button>
@@ -296,20 +223,76 @@
             </div>
 
             <div class="card">
-                <h2 id="formTitle">Добавить товар в каталог</h2>
+                <h2 id="formTitle">Добавить товар на общий склад</h2>
                 <div class="field">
-                    <label>Наименование</label>
+                    <label>Наименование товара</label>
                     <input type="text" id="itemName" placeholder="Например: Джинсы">
                 </div>
                 <div class="field">
-                    <label>Размеры</label>
+                    <label>Доступные размеры</label>
                     <input type="text" id="itemSizes" placeholder="Например: 44, 46, 48">
                 </div>
                 <div class="field">
-                    <label>Количество</label>
-                    <input type="number" id="itemQty" placeholder="Например: 10">
+                    <label>Количество на складе</label>
+                    <input type="number" id="itemQty" placeholder="Например: 30">
                 </div>
-                <button id="saveBtn" onclick="saveItem()">Добавить в каталог</button>
+                <button id="saveBtn" onclick="saveItem()">Добавить товар</button>
+            </div>
+        </div>
+
+        <!-- Правая колонка: Склады по деревням и ИИ -->
+        <div>
+            <!-- Склады по деревням -->
+            <div class="card">
+                <h2>Наличие товаров по деревням (у продавцов)</h2>
+                
+                <div class="village-box">
+                    <div class="village-title">Пункт: Поселок Сосновка (Продавец: местный оператор)</div>
+                    <table style="margin-top: 6px;">
+                        <tr>
+                            <th>Товар</th>
+                            <th>Размер</th>
+                            <th>В наличии</th>
+                        </tr>
+                        <tr>
+                            <td>Платье летнее</td>
+                            <td>44</td>
+                            <td>3 шт.</td>
+                        </tr>
+                        <tr>
+                            <td>Куртка утепленная</td>
+                            <td>48</td>
+                            <td>2 шт.</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="village-box">
+                    <div class="village-title">Пункт: Поселок Калиновка (Продавец: местный оператор)</div>
+                    <table style="margin-top: 6px;">
+                        <tr>
+                            <th>Товар</th>
+                            <th>Размер</th>
+                            <th>В наличии</th>
+                        </tr>
+                        <tr>
+                            <td>Платье летнее</td>
+                            <td>46</td>
+                            <td>5 шт.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ИИ Аналитика -->
+            <div class="card">
+                <h2>ИИ-анализ и рекомендации</h2>
+                <div class="tip-item">
+                    <strong>Поселок Сосновка:</strong> Платья 44 размера подходят к концу. ИИ рекомендует отправить догрузку со склада (+5 шт.).
+                </div>
+                <div class="tip-item">
+                    <strong>Поселок Калиновка:</strong> Спрос на куртки низкий, лучше перераспределить часть в соседний пункт.
+                </div>
             </div>
         </div>
     </div>
@@ -328,15 +311,15 @@
             return;
         }
 
-        const table = document.getElementById('catalogList');
+        const table = document.getElementById('centralStockList');
 
         if (currentEditRow) {
             currentEditRow.cells[1].innerText = name;
             currentEditRow.cells[2].innerText = sizes;
             currentEditRow.cells[3].innerText = qty + ' шт.';
             currentEditRow = null;
-            document.getElementById('formTitle').innerText = 'Добавить товар в каталог';
-            document.getElementById('saveBtn').innerText = 'Добавить в каталог';
+            document.getElementById('formTitle').innerText = 'Добавить товар на общий склад';
+            document.getElementById('saveBtn').innerText = 'Добавить товар';
         } else {
             const art = Math.floor(1000 + Math.random() * 9000);
             const row = document.createElement('tr');
@@ -372,38 +355,6 @@
 
         document.getElementById('formTitle').innerText = 'Редактировать товар';
         document.getElementById('saveBtn').innerText = 'Сохранить изменения';
-    }
-
-    function addTrip() {
-        const title = document.getElementById('vanTitle').value.trim();
-        const route = document.getElementById('routeText').value.trim();
-        const fill = document.getElementById('fillPercent').value.trim();
-
-        if (!title || !route || !fill) {
-            alert('Заполните все поля для рейса!');
-            return;
-        }
-
-        const container = document.getElementById('tripsContainer');
-        const box = document.createElement('div');
-        box.className = 'van-box';
-        box.innerHTML = `
-            <div class="van-header">
-                <span>${title}</span>
-                <span>${fill}% заполнено</span>
-            </div>
-            <div class="van-route">Маршрут: ${route}</div>
-            <div class="progress-container">
-                <div class="progress-bar" style="width: ${fill}%;"></div>
-            </div>
-            <button class="btn-danger btn-sm" onclick="this.closest('.van-box').remove()">Удалить рейс</button>
-        `;
-
-        container.appendChild(box);
-
-        document.getElementById('vanTitle').value = '';
-        document.getElementById('routeText').value = '';
-        document.getElementById('fillPercent').value = '';
     }
 </script>
 
