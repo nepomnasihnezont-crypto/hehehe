@@ -1,59 +1,62 @@
 :root {
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --text: #1e293b;
-    --muted: #64748b;
-    --primary: #3b82f6;
-    --primary-hover: #2563eb;
-    --danger: #ef4444;
-    --danger-hover: #dc2626;
-    --success: #22c55e;
-    --border: #e2e8f0;
-    --radius: 12px;
+    --bg-main: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-muted: #64748b;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --danger: #dc2626;
+    --danger-light: #fef2f2;
+    --success: #16a34a;
+    --border: #cbd5e1;
+    --radius: 10px;
 }
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-color);
+    margin: 0;
     padding: 20px;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
-.app-container {
-    max-width: 1100px;
+.wrapper {
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.app-header {
-    background: var(--card);
-    padding: 20px;
+header {
+    background: var(--card-bg);
+    padding: 20px 24px;
     border-radius: var(--radius);
     border: 1px solid var(--border);
     margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.app-header h1 {
-    font-size: 18px;
-    margin-bottom: 4px;
+header h1 {
+    font-size: 22px;
+    margin: 0 0 6px 0;
+    color: var(--text-color);
 }
 
-.app-header p {
-    font-size: 13px;
-    color: var(--muted);
+header p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: 0;
 }
 
-/* Строгий и гибкий адаптивный грид */
-.app-grid {
+/* Десктопная сетка */
+.dashboard-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    align-items: start;
 }
 
 .column {
@@ -63,67 +66,73 @@ body {
 }
 
 .card {
-    background: var(--card);
+    background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .card h2 {
-    font-size: 15px;
+    font-size: 16px;
+    margin-top: 0;
     margin-bottom: 14px;
+    font-weight: 600;
 }
 
-/* Скролл для таблиц на мобилках */
-.table-wrap {
+/* Таблицы */
+.table-responsive {
     width: 100%;
     overflow-x: auto;
-    margin-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
-    white-space: nowrap;
+    margin-bottom: 10px;
+    min-width: 320px;
 }
 
 th, td {
     text-align: left;
-    padding: 8px;
-    border-bottom: 1px solid var(--border);
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 th {
-    color: var(--muted);
-    font-weight: 500;
-    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12px;
     text-transform: uppercase;
+    background: #f8fafc;
 }
 
-/* Табы */
-.tabs-list {
+/* Вкладки */
+.tabs {
     display: flex;
     gap: 6px;
-    flex-wrap: wrap;
     margin-bottom: 14px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #e2e8f0;
     padding-bottom: 10px;
+    flex-wrap: wrap;
 }
 
 .tab-btn {
-    background: #f1f5f9;
-    color: var(--muted);
+    background: #e2e8f0;
+    color: var(--text-muted);
     border: none;
     padding: 7px 12px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
+    width: auto;
 }
 
 .tab-btn.active {
-    background: var(--primary);
+    background: var(--accent);
     color: white;
 }
 
@@ -135,108 +144,124 @@ th {
     display: block;
 }
 
-/* Оператор */
-.operator-box {
+/* Мета-информация */
+.operator-meta {
     background: #f8fafc;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 12px;
     margin-bottom: 10px;
-    font-size: 12px;
-    color: var(--muted);
+    font-size: 13px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
 }
 
-.operator-box strong {
-    color: var(--text);
-}
-
-.badge {
+.status-badge {
     color: var(--success);
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 12px;
+    background: #dcfce7;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
 }
 
-/* Формы и элементы */
-.form-group {
+/* Формы */
+.field {
     margin-bottom: 12px;
 }
 
-.form-group label {
+.field label {
     display: block;
     font-size: 12px;
-    color: var(--muted);
+    color: var(--text-muted);
     margin-bottom: 4px;
+    font-weight: 500;
 }
 
-input[type="text"],
-input[type="number"] {
+.field input, .inline-controls input, .chat-bottom input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 12px;
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-size: 14px;
-    background: #fafafa;
+    font-size: 14px; /* Размер 14px предотвращает автозум на iOS */
+    outline: none;
+    background: #fff;
 }
 
+.field input:focus, .inline-controls input:focus, .chat-bottom input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* Кнопки */
 .btn-primary {
-    background: var(--primary);
+    background: var(--accent);
     color: white;
     border: none;
     padding: 10px 16px;
     border-radius: 6px;
-    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
     width: 100%;
+    text-align: center;
 }
 
 .btn-primary:hover {
-    background: var(--primary-hover);
+    background: var(--accent-hover);
 }
 
-.btn-action {
-    padding: 4px 8px;
-    font-size: 11px;
-    border: 1px solid var(--border);
-    background: white;
+.btn-danger {
+    background: var(--danger-light);
+    color: var(--danger);
+    border: 1px solid #fecaca;
+}
+
+.btn-danger:hover {
+    background: #fee2e2;
+}
+
+.btn-sm {
+    padding: 6px 10px;
+    font-size: 12px;
     border-radius: 4px;
     cursor: pointer;
-    margin-right: 4px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    width: auto;
 }
 
-.btn-del {
-    color: var(--danger);
-    border-color: #fee2e2;
-}
-.btn-del:hover {
-    background: #fef2f2;
-}
-
-/* Инлайн-формы для добавления товара на точках (идеально адаптируются) */
-.inline-form {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr auto;
+/* Инлайн-строка добавления */
+.inline-controls {
+    display: flex;
     gap: 6px;
     margin-top: 10px;
-}
-
-.inline-form input {
-    padding: 8px;
-    font-size: 13px;
-}
-
-.inline-form button {
-    width: auto;
-    padding: 0 14px;
-}
-
-/* Чат */
-.chat-container {
     background: #f8fafc;
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+#sosnName, #kalName { flex: 2; min-width: 80px; }
+#sosnSize, #kalSize { flex: 1; min-width: 50px; }
+#sosnQty, #kalQty { flex: 1; min-width: 45px; }
+
+.btn-add-inline {
+    padding: 0 12px;
+    font-size: 18px;
+    line-height: 1;
+    width: auto !important;
+}
+
+/* Чат с ИИ */
+.chat-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
     padding: 10px;
     height: 130px;
     overflow-y: auto;
@@ -260,40 +285,62 @@ input[type="number"] {
 
 .chat-msg.ai {
     background: #eff6ff;
-    color: #1e40af;
     align-self: flex-start;
+    color: #1e40af;
     border: 1px solid #dbeafe;
 }
 
-.chat-input-row {
+.chat-bottom {
     display: flex;
     gap: 6px;
 }
 
-.chat-input-row input {
-    flex: 1;
+.btn-ai-send {
+    white-space: nowrap;
+    width: auto !important;
 }
 
-.chat-input-row button {
-    width: auto;
-}
-
-/* АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ (до 768px) */
+/* ПОЛНОЦЕННЫЙ МОБИЛЬНЫЙ АДАПТИВ (ДЛЯ СМАРТФОНОВ) */
 @media (max-width: 768px) {
     body {
         padding: 10px;
     }
-
-    .app-grid {
-        grid-template-columns: 1fr; /* Вся сетка в один столбец */
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
     }
 
-    .inline-form {
-        grid-template-columns: 1fr; /* На телефоне поля ввода внутри точек стают друг под другом */
+    header {
+        padding: 14px;
+        margin-bottom: 14px;
     }
 
-    .inline-form button {
+    header h1 {
+        font-size: 18px;
+    }
+
+    header p {
+        font-size: 13px;
+    }
+
+    .card {
+        padding: 14px;
+        margin-bottom: 0;
+    }
+
+    /* Адаптация инлайн-строк на мобильных под вертикальный блок если экран узкий */
+    .inline-controls {
+        flex-wrap: wrap;
+    }
+    
+    .inline-controls input {
+        flex: 1 1 45% !important;
+    }
+
+    .btn-add-inline {
         width: 100% !important;
-        padding: 10px;
+        height: 40px;
+        font-size: 16px;
     }
 }
