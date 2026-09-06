@@ -1,25 +1,21 @@
 let currentEditRow = null;
 
-// Переключение между вкладками деревень
 function switchVillage(villageId, event) {
     document.querySelectorAll('.village-panel').forEach(panel => panel.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     
-    const targetPanel = document.getElementById(villageId);
-    if (targetPanel) {
-        targetPanel.classList.add('active');
-    }
+    const target = document.getElementById(villageId);
+    if (target) target.classList.add('active');
     event.currentTarget.classList.add('active');
 }
 
-// Добавление или сохранение товара на центральном складе
 function saveItem() {
     const name = document.getElementById('itemName').value.trim();
     const sizes = document.getElementById('itemSizes').value.trim();
     const qty = document.getElementById('itemQty').value.trim();
 
     if (!name || !sizes || !qty) {
-        alert('Пожалуйста, заполните все поля!');
+        alert('Заполните все поля!');
         return;
     }
 
@@ -41,8 +37,8 @@ function saveItem() {
             <td>${sizes}</td>
             <td>${qty} шт.</td>
             <td>
-                <button class="btn-sm" onclick="editRow(this)">Изм</button>
-                <button class="btn-sm btn-danger" onclick="deleteRow(this)">Уд</button>
+                <button class="btn-action" onclick="editRow(this)">Изм</button>
+                <button class="btn-action btn-del" onclick="deleteRow(this)">Уд</button>
             </td>
         `;
         table.appendChild(row);
@@ -69,7 +65,6 @@ function editRow(btn) {
     document.getElementById('saveBtn').innerText = 'Сохранить изменения';
 }
 
-// Добавление товара на точку конкретной деревни
 function addItemToVillage(tableId, nameId, sizeId, qtyId) {
     const name = document.getElementById(nameId).value.trim();
     const size = document.getElementById(sizeId).value.trim();
@@ -86,7 +81,7 @@ function addItemToVillage(tableId, nameId, sizeId, qtyId) {
         <td>${name}</td>
         <td>${size}</td>
         <td>${qty} шт.</td>
-        <td><button class="btn-sm btn-danger" onclick="this.closest('tr').remove()">Убрать</button></td>
+        <td><button class="btn-action btn-del" onclick="this.closest('tr').remove()">Убрать</button></td>
     `;
     table.appendChild(row);
 
@@ -95,7 +90,6 @@ function addItemToVillage(tableId, nameId, sizeId, qtyId) {
     document.getElementById(qtyId).value = '';
 }
 
-// Динамическое создание нового населенного пункта
 function addNewVillage() {
     const vName = document.getElementById('newVillageName').value.trim();
     const opName = document.getElementById('newOperatorName').value.trim();
@@ -107,58 +101,53 @@ function addNewVillage() {
 
     const villageId = 'village_' + Date.now();
     const tableId = villageId + 'Table';
-    const nameInputId = villageId + 'Name';
-    const sizeInputId = villageId + 'Size';
-    const qtyInputId = villageId + 'Qty';
+    const nId = villageId + 'Name';
+    const sId = villageId + 'Size';
+    const qId = villageId + 'Qty';
 
-    // Создаем вкладку
+    // Таб
     const tabsContainer = document.getElementById('villageTabs');
-    const newTabBtn = document.createElement('button');
-    newTabBtn.className = 'tab-btn';
-    newTabBtn.innerText = vName;
-    newTabBtn.onclick = function(event) { switchVillage(villageId, event); };
-    tabsContainer.appendChild(newTabBtn);
+    const newTab = document.createElement('button');
+    newTab.className = 'tab-btn';
+    newTab.innerText = vName;
+    newTab.onclick = function(e) { switchVillage(villageId, e); };
+    tabsContainer.appendChild(newTab);
 
-    // Создаем панель управления точкой
+    // Панель
     const panelsContainer = document.getElementById('dynamicPanelsContainer');
     const newPanel = document.createElement('div');
     newPanel.id = villageId;
     newPanel.className = 'village-panel';
     newPanel.innerHTML = `
-        <div class="operator-meta">
-            <div>Оператор на точке: <strong>${opName}</strong></div>
-            <div class="status-badge">Точка подключена</div>
+        <div class="operator-box">
+            <span>Оператор: <strong>${opName}</strong></span>
+            <span class="badge">Активен</span>
         </div>
-        <div class="table-responsive">
+        <div class="table-wrap">
             <table id="${tableId}">
                 <tr>
                     <th>Товар</th>
                     <th>Размер</th>
-                    <th>В наличии</th>
+                    <th>Наличие</th>
                     <th>Действие</th>
                 </tr>
             </table>
         </div>
-        <div class="inline-controls">
-            <input type="text" id="${nameInputId}" placeholder="Товар">
-            <input type="text" id="${sizeInputId}" placeholder="Размер">
-            <input type="number" id="${qtyInputId}" placeholder="Шт">
-            <button class="btn-add-inline" onclick="addItemToVillage('${tableId}', '${nameInputId}', '${sizeInputId}', '${qtyInputId}')">+</button>
+        <div class="inline-form">
+            <input type="text" id="${nId}" placeholder="Товар">
+            <input type="text" id="${sId}" placeholder="Размер">
+            <input type="number" id="${qId}" placeholder="Шт">
+            <button class="btn-primary" onclick="addItemToVillage('${tableId}', '${nId}', '${sId}', '${qId}')">+</button>
         </div>
     `;
     panelsContainer.appendChild(newPanel);
 
     document.getElementById('newVillageName').value = '';
     document.getElementById('newOperatorName').value = '';
-
-    alert('Населенный пункт успешно добавлен!');
 }
 
-// Обработка отправки вопросов в ИИ-чат
 function handleChatPress(e) {
-    if (e.key === 'Enter') {
-        sendToAI();
-    }
+    if (e.key === 'Enter') sendToAI();
 }
 
 function sendToAI() {
@@ -181,12 +170,12 @@ function sendToAI() {
         aiMsg.className = 'chat-msg ai';
         
         const lower = text.toLowerCase();
-        if (lower.includes('сосновк') || lower.includes('довезти') || lower.includes('остатк')) {
-            aiMsg.innerText = 'Анализ остатков: в Поселке Сосновка мало ходовых размеров. Рекомендую сформировать партию на догрузку с центрального склада.';
+        if (lower.includes('сосновк') || lower.includes('довезти')) {
+            aiMsg.innerText = 'Анализ остатков: в Сосновке заканчиваются ходовые размеры. Рекомендуется догрузка со склада.';
         } else if (lower.includes('калиновк')) {
-            aiMsg.innerText = 'Поселок Калиновка: текущих остатков достаточно, срочных отправок не требуется.';
+            aiMsg.innerText = 'Поселок Калиновка: остатки в норме, дефицита нет.';
         } else {
-            aiMsg.innerText = 'Я проанализировал данные платформы. Все активные пункты и локальные операторы передали актуальные сведения об остатках.';
+            aiMsg.innerText = 'Система функционирует стабильно, все данные от операторов точек актуальны.';
         }
 
         chatContainer.appendChild(aiMsg);
